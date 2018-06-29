@@ -2,7 +2,6 @@
 
 $(document).ready(function () {
 
-
     $("#login-button").on("click", function () {
         var usernameLog = $('#login-username').val();
         var passwordLog = $('#login-password').val();
