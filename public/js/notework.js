@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> userdatatwo
 $(document).ready(function () {
 
 

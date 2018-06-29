@@ -10,6 +10,7 @@ module.exports = function(sequelize, DataTypes) {
       email: {
         type: DataTypes.STRING,
         defaultValue: "email",
+        allowNull: false,
         validate: {
         len: [255]
           }
