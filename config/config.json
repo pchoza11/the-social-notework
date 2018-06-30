@@ -1,13 +1,8 @@
 {
   "development": {
     "username": "root",
-<<<<<<< HEAD
     "password": "",
-    "database": "notework_db",
-=======
-    "password": "1968400Sb!",
     "database": "user_db",
->>>>>>> userdatatwo
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
