@@ -12,7 +12,7 @@ module.exports = (sequelize,DataTypes)=>{
         validate : {
           len : [1]
         }
-      }
+      },
     }
   });
 
