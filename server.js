@@ -10,15 +10,15 @@ var PORT = process.env.PORT || 3000;
 var users = [
     {
         id: 1,
-        name: "clark",
-        age: 21,
-        password: "e5f13243f6ad1355ba8dd3c298466667:e20984835647c172afd953a3588e9ace"
+        name: "paul",
+        age: 30,
+        password: "heyhey"
     },
     {
         id: 2,
-        name: "peter",
-        age: 42,
-        password: "test123"
+        name: "jane",
+        age: 22,
+        password: "hello"
     }
 ];
 
