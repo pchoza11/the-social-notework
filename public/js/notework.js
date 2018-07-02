@@ -1,30 +1,13 @@
 $(document).ready(function () {
-    var usernameLog = $('#login-username').val();
-    var passwordLog = $('#login-password').val();
     console.log("loaded");
-
-    // $(document).on("click","#login-button", function(){
-    //     console.log("login");
-    // });
 
     $("#signup-button").on("click", function(event){  
         event.preventDefault();
-        var usernameSign = $('#signup-username').val();
-        var emailSign = $('#signup-email').val();
         var passwordSign1 = $('#signup-password').val();
         var passwordSign2 = $('#signup-password-verify').val();
-        console.log("password match");
-        console.log(usernameSign, emailSign, passwordSign1, passwordSign2);
         if(passwordSign1 === passwordSign2) {
-            var newUser = {
-                name: usernameSign,
-                password: passwordSign1
-            };
-            console.log(newUser)
-            $.post("/api/users", newUser)
-            .then(console.log("created new account"));
-            // Reload the page to get the updated list
-            //   location.reload();            
+            console.log("password match");
+            checkUser();
         }
         else {
             $(".form-control").empty();
@@ -34,26 +17,75 @@ $(document).ready(function () {
         }
     });
 
+    function checkUser(){
+        var usernameSign = $('#signup-username').val();
+        $.get("/api/users", function(data) {
+            console.log(data);
+            if (data.length===0)
+            {
+                console.log("hello")
+                createUser();
+            }
+            else{
+                for (var i = 0; i < data.length; i++) {
+                    if (usernameSign!=data[i].name){
+                        createUser();
+                    }
+                    else {
+                        alert("username exists, please try again");
+                        return;
+                    }
+                }
+            }
 
+        });
+    }
 
-//     function login(){
-//         event.preventDefault();
-//         if (!usernameLog.val().trim().trim() && !passwordLog.val().trim().trim()){
-//             alert ("please make sure you've filled in both fields")
-//             return;
-//         }
-//         else{
-//             $.get("/api/users", function(data) {
-//                 for (var i = 0; i < data.length; i++) {
-//                     if (usernameLog===data[i].name){
-//                         var userIndex=i;
-//                         console.log ("user found")
-//                         if (passwordLog===data[userIndex].password){
-//                             console.log ("user-password match!");
-//                         }
-//                     }
-//                 }
-//             });
-//         }
-//     }
+    function createUser (){
+        var usernameSign = $('#signup-username').val();
+        var emailSign = $('#signup-email').val();
+        var passwordSign1 = $('#signup-password').val();
+        var newUser = {
+            name: usernameSign,
+            email: emailSign,
+            password: passwordSign1
+        };
+        console.log(newUser)
+        $.post("/api/users", newUser)
+        .then(console.log("created new account"));
+        // Reload the page to get the updated list
+        // Location.reload();            
+    }
+
+        $(document).on("click","#login-button", function(){
+            event.preventDefault();
+            var usernameLog = $('#login-username').val();
+            var passwordLog = $('#login-password').val();
+            if (usernameLog!="" && passwordLog!=""){
+                console.log(usernameLog,passwordLog);
+                $.get("/api/users", function(data) {
+                    for (var i = 0; i < data.length; i++) {
+                        console.log(data[i]);
+                        if (usernameLog===data[i].name){
+                            var userIndex=i;
+                            console.log ("user found")
+                            if (passwordLog===data[userIndex].password){
+                                console.log ("user-password match!");
+                                alert ("Welcome "+ data[userIndex].name)
+                            }
+                            else {
+                                alert("password incorrect, please try again");
+                            }
+                        }
+                        else {
+                            alert("user does not exist, make an account or try again!")
+                        }
+                    }
+                });
+            }
+            else{
+                alert ("please make sure you've filled in both fields");
+                return;
+            }
+    });
 });
