@@ -24,7 +24,7 @@ $(document).ready(function () {
             $.post("/api/users", newUser)
             .then(console.log("created new account"));
             // Reload the page to get the updated list
-            //   location.reload();            
+            location.reload();            
         }
         else {
             $(".form-control").empty();
@@ -36,24 +36,24 @@ $(document).ready(function () {
 
 
 
-//     function login(){
-//         event.preventDefault();
-//         if (!usernameLog.val().trim().trim() && !passwordLog.val().trim().trim()){
-//             alert ("please make sure you've filled in both fields")
-//             return;
-//         }
-//         else{
-//             $.get("/api/users", function(data) {
-//                 for (var i = 0; i < data.length; i++) {
-//                     if (usernameLog===data[i].name){
-//                         var userIndex=i;
-//                         console.log ("user found")
-//                         if (passwordLog===data[userIndex].password){
-//                             console.log ("user-password match!");
-//                         }
-//                     }
-//                 }
-//             });
-//         }
-//     }
+    // function login(){
+    //     event.preventDefault();
+    //     if (!usernameLog.val().trim().trim() && !passwordLog.val().trim().trim()){
+    //         alert ("please make sure you've filled in both fields")
+    //         return;
+    //     }
+    //     else{
+    //         $.get("/api/users", function(data) {
+    //             for (var i = 0; i < data.length; i++) {
+    //                 if (usernameLog===data[i].name){
+    //                     var userIndex=i;
+    //                     console.log ("user found")
+    //                     if (passwordLog===data[userIndex].password){
+    //                         console.log ("user-password match!");
+    //                     }
+    //                 }
+    //             }
+    //         });
+    //     }
+    // }
 });
