@@ -19,6 +19,7 @@ app.use(express.static("public"));
 
 require("./routes/user-routes.js")(app);
 require("./routes/note-routes.js")(app);
+require("./routes/html-routes.js")(app);
 
 db.sequelize.sync({ force: true }).then(function() {
     app.listen(PORT, function() {
@@ -26,11 +27,3 @@ db.sequelize.sync({ force: true }).then(function() {
     });
   });
   
-app.get ("/", function(req,res){
-    res.render("layouts/home-login");
-})
-
-app.get ("/userdash/:user", function(req,res){
-    res.render("layouts/user-dashboard");
-})
-
