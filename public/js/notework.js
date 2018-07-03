@@ -19,6 +19,7 @@ $(document).ready(function () {
 
     function checkUser(){
         var usernameSign = $('#signup-username').val();
+        var userExist=false;
         $.get("/api/users", function(data) {
             console.log(data);
             if (data.length===0)
@@ -28,13 +29,14 @@ $(document).ready(function () {
             }
             else{
                 for (var i = 0; i < data.length; i++) {
-                    if (usernameSign!=data[i].name){
-                        createUser();
-                    }
-                    else {
+                    if (usernameSign===data[i].name){
+                        userExist=true;
                         alert("username exists, please try again");
                         return;
                     }
+                }
+                if (userExist===false){
+                    createUser();
                 }
             }
 
@@ -63,29 +65,45 @@ $(document).ready(function () {
             var passwordLog = $('#login-password').val();
             if (usernameLog!="" && passwordLog!=""){
                 console.log(usernameLog,passwordLog);
-                $.get("/api/users", function(data) {
-                    for (var i = 0; i < data.length; i++) {
-                        console.log(data[i]);
-                        if (usernameLog===data[i].name){
-                            var userIndex=i;
-                            console.log ("user found")
-                            if (passwordLog===data[userIndex].password){
-                                console.log ("user-password match!");
-                                alert ("Welcome "+ data[userIndex].name)
-                            }
-                            else {
-                                alert("password incorrect, please try again");
-                            }
-                        }
-                        else {
-                            alert("user does not exist, make an account or try again!")
-                        }
-                    }
-                });
+                userPassCheck();
             }
             else{
                 alert ("please make sure you've filled in both fields");
                 return;
             }
-    });
+        });
+
+        function userPassCheck (){
+            var accountExist=false;
+            var passwordLog = $('#login-password').val();
+            var usernameLog = $('#login-username').val();
+            $.get("/api/users", function(data) {
+                for (var i = 0; i < data.length; i++) {
+                    console.log(data[i]);
+                    if (usernameLog===data[i].name){
+                        userIndex=i;
+                        console.log ("user found")
+                        accountExist=true;
+                    }
+                }
+                if (accountExist===true){
+                    var passwordLog = $('#login-password').val();
+                    passCorrect=false;
+                    $.get("/api/users", function(data){
+                        if (passwordLog===data[userIndex].password){
+                            console.log ("user-password match!");
+                            passCorrect=true;
+                            alert ("Welcome "+ data[userIndex].name)
+                        }
+                        else {
+                            alert("password incorrect, please try again");
+                        }
+                    });
+                }
+                else{
+                    alert("user does not exist, make an account or try again!");
+                    return;
+                }
+            });
+        }
 });
