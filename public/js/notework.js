@@ -57,35 +57,47 @@ $(document).ready(function () {
         // Location.reload();            
     }
 
-        $(document).on("click","#login-button", function(){
-            event.preventDefault();
-            var usernameLog = $('#login-username').val();
-            var passwordLog = $('#login-password').val();
-            if (usernameLog!="" && passwordLog!=""){
-                console.log(usernameLog,passwordLog);
-                $.get("/api/users", function(data) {
-                    for (var i = 0; i < data.length; i++) {
-                        console.log(data[i]);
-                        if (usernameLog===data[i].name){
-                            var userIndex=i;
-                            console.log ("user found")
-                            if (passwordLog===data[userIndex].password){
-                                console.log ("user-password match!");
-                                alert ("Welcome "+ data[userIndex].name)
-                            }
-                            else {
-                                alert("password incorrect, please try again");
-                            }
+    $(document).on("click","#login-button", function(){
+        event.preventDefault();
+        var usernameLog = $('#login-username').val();
+        var passwordLog = $('#login-password').val();
+        if (usernameLog!="" && passwordLog!=""){
+            console.log(usernameLog,passwordLog);
+            $.get("/api/users", function(data) {
+                for (var i = 0; i < data.length; i++) {
+                    console.log(data[i]);
+                    if (usernameLog===data[i].name){
+                        var userIndex=i;
+                        console.log ("user found")
+                        if (passwordLog===data[userIndex].password){
+                            console.log ("user-password match!");
+                            // alert ("Welcome "+ data[userIndex].name)
+                            window.location.href="/userdash/"+data[i].id;
                         }
                         else {
-                            alert("user does not exist, make an account or try again!")
+                            alert("password incorrect, please try again");
                         }
                     }
-                });
-            }
-            else{
-                alert ("please make sure you've filled in both fields");
-                return;
-            }
+                    else {
+                        alert("user does not exist, make an account or try again!")
+                    }
+                }
+            });
+        }
+        else{
+            alert ("please make sure you've filled in both fields");
+            return;
+        }
+
     });
+    $(document).on("click", "#create-notes", function () {
+        event.preventDefault();
+        $.get("/api/users", function(data){
+            for (i=0; i<data.length; i++) {
+                console.log("you clicked create notes");
+                window.location.href = "/userdash/" + data[i].id + "/create-notes";
+            };
+        });
+    });
+
 });
