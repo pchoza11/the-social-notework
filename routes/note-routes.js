@@ -4,7 +4,7 @@ module.exports = (app)=>{
 
   app.get('/api/notes/',(req,res)=>{
     db.note.findAll({
-      include: [db.routes]
+      include: [db.user]
     }).then((dbNote)=>{
       res.json(dbNote);
     });    
@@ -15,7 +15,7 @@ module.exports = (app)=>{
       where : {
         topic : req.params.topic
       },
-      include: [db.routes]
+      include: [db.user]
     }).then((dbNote)=>{
       res.json(dbNote);
     });

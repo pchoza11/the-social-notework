@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
       email: {
         type: DataTypes.STRING,
         defaultValue: "email",
-        allowNull: true,
+        allowNull: false,
         validate: {
         len: [1,255]
           }
@@ -24,6 +24,11 @@ module.exports = function(sequelize, DataTypes) {
       },
 
     });
+    user.associate=function(models){
+      user.hasMany(models.note, {
+        onDelete : "cascade"
+      });
+    };
     return user;
   };
   
