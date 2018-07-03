@@ -88,12 +88,11 @@ $(document).ready(function () {
                 }
                 if (accountExist===true){
                     var passwordLog = $('#login-password').val();
-                    passCorrect=false;
                     $.get("/api/users", function(data){
                         if (passwordLog===data[userIndex].password){
                             console.log ("user-password match!");
-                            passCorrect=true;
-                            alert ("Welcome "+ data[userIndex].name)
+                            alert ("Welcome "+ data[userIndex].name);
+                            window.location.href="/userdash/"+data[userIndex].id;
                         }
                         else {
                             alert("password incorrect, please try again");
@@ -106,4 +105,13 @@ $(document).ready(function () {
                 }
             });
         }
+        $(document).on("click", "#create-notes", function () {
+            event.preventDefault();
+            $.get("/api/users", function (data) {
+                for (i = 0; i < data.length; i++) {
+                    console.log("you clicked create notes");
+                    window.location.href = "/userdash/" + data[i].id + "/create-notes";
+                };
+            });
+        });
 });
