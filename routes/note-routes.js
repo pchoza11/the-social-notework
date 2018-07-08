@@ -26,7 +26,7 @@ module.exports = (app)=>{
       category : req.body.category,
       title : req.body.title,
       body: req.body.body,
-      userid: req.body.userId
+      userId: req.body.userId
     }).then((dbNote)=>{
       res.json(dbNote);
     });

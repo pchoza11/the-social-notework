@@ -5,7 +5,7 @@ $(document).ready(function () {
         var notesCategory = $('#notes-category').val();
         var notesTitle = $('#notes-title').val();
         var notesBody = $('#notes-body').val();
-        var userId = parseInt($("#userid").text().trim(), 10); 
+        var userId = parseInt($('#userid').text().trim(), 10); 
         var newNote = {
             category: notesCategory,
             title: notesTitle,

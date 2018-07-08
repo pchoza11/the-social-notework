@@ -10,7 +10,7 @@ module.exports = (app) => {
 
   app.get("/userdash/:userid", function (req, res) {
     var id=req.params.userid;
-    console.log("hey this is the ID" +id+ "end of ID var");
+    
     db.user.findOne({
       where: { id: req.params.userid }
     }).then((dbUser) => {
@@ -24,6 +24,7 @@ module.exports = (app) => {
 
   app.get("/userdash/:userid/create-notes", function (req, res) {
     var id = req.params.userid;
+    console.log("hey this is the ID>>>>>>>>>>>>>>" + id + "<<<<<<<<<<<end of ID var");
     db.user.findOne({
       where: { id: req.params.userid }
     }).then((dbUser) => {
