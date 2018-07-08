@@ -2,7 +2,7 @@ module.exports = function(sequelize, DataTypes) {
     var user = sequelize.define("user", {
       name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         validate: {
           len: [1,255]
         }
@@ -10,18 +10,18 @@ module.exports = function(sequelize, DataTypes) {
       email: {
         type: DataTypes.STRING,
         defaultValue: "email",
-        allowNull: false,
+        allowNull: true,
         validate: {
         len: [1,255]
           }
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         validate: {
           len: [1,255]
         }
-      },
+      }
 
     });
     user.associate=function(models){

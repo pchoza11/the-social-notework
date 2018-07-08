@@ -23,8 +23,10 @@ module.exports = (app)=>{
 
   app.post('/api/notes/',(req,res)=>{
     db.note.create({
-      topic : req.body.topic,
-      body : req.body.body
+      category : req.body.category,
+      title : req.body.title,
+      body: req.body.body,
+      userid: req.body.userId
     }).then((dbNote)=>{
       res.json(dbNote);
     });

@@ -3,11 +3,16 @@ $(document).ready(function () {
 
     $("#signup-button").on("click", function(event){  
         event.preventDefault();
+        var usernameSign = $('#signup-username').val();
+        var emailSign = $('#signup-email').val();
         var passwordSign1 = $('#signup-password').val();
         var passwordSign2 = $('#signup-password-verify').val();
         if(passwordSign1 === passwordSign2) {
             console.log("password match");
             checkUser();
+        }
+        else if(usernameSign === "" || emailSign === "" || passwordSign1 === "" || passwordSign2 === ""){
+            alert("form submitted incomplete, please try again.")
         }
         else {
             $(".form-control").empty();
@@ -105,13 +110,12 @@ $(document).ready(function () {
                 }
             });
         }
-        $(document).on("click", "#create-notes", function () {
-            event.preventDefault();
-            $.get("/api/users", function (data) {
-                for (i = 0; i < data.length; i++) {
-                    console.log("you clicked create notes");
-                    window.location.href = "/userdash/" + data[i].id + "/create-notes";
-                };
-            });
-        });
+        // $(document).on("click", "#create-notes", function (event) {
+        //     event.preventDefault();
+        //     console.log(event)
+        //     $.get("/api/users", function (data) {
+        //         window.location.href = "/userdash/" + data.id + "/create-notes";
+
+        //     });
+        // });
 });
