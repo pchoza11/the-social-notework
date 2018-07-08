@@ -16,8 +16,29 @@ module.exports = (app) => {
     }).then((dbUser) => {
       console.log("this is dbUser: ", dbUser, "end of dbuser")
       var userdata = dbUser.dataValues;
-      res.render("user-dashboard", {userdata});
+      db.note.findAll({
+        where: { userid: req.params.userid }
+      }).then((results) => {
+        let xyz = [];
+        
+        for (j=0;j<results.length;j++){
+          let notedata =results[j].dataValues
+          xyz.push(notedata);
+        };
+        
+        console.log("results>>>>>>>>>>>>>>>>>>>>>", results, "<<<<<<<<<<<<<<<<<results");
+        var data = {
+          user : userdata,
+          note : xyz
+        }
+        console.log("data>>>>>>>>>>>>>>>>>>>>>", data, "<<<<<<<<<<<<<<<<<data");
+        
+        res.render("user-dashboard", data)
+      });
     }); //pull user info from database through id
+    
+
+
 
 
   })

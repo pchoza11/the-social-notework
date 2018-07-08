@@ -27,17 +27,35 @@
 
 </br>
 <div class="jumbotron">
-  <h1 class="display-4"> WELCOME {{userdata.name}} </h1>
+  <h1 class="display-4"> WELCOME {{user.name}} </h1>
   <p class="lead">Add a class, add some new notes, or go over your old notes!</p>
   <hr class="my-4">
-  <a class="btn btn-primary btn-lg" id="create-notes" href="{{userdata.id}}/create-notes" role="button">Type Some Notes!</a>
-  <a class="btn btn-primary btn-lg" id="addclass" href="#" role="button">Add A Class!</a>
+  <a class="btn btn-primary btn-lg" id="create-notes" href="{{user.id}}/create-notes" role="button">Type Some Notes!</a>
+  {{!-- <a class="btn btn-primary btn-lg" id="addclass" href="#" role="button">Add A Class!</a> --}}
 </div>
 <div class="recent">
   <div id="carousel" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       <div class="mostrecent">
-        <img class="d-block w-100" src="" alt="Preview of most recent notes">
+
+      {{#each note}}
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseEach" aria-expanded="false" aria-controls="collapseEach">
+          {{category}}:  {{title}}
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseEach" class="collapse" aria-labelledby="headingEach" data-parent="#accordionExample">
+      <div class="card-body">
+        {{body}}
+      </div>
+    </div>
+  </div>
+      {{/each}}
       </div>
       <div class="2ndmostrecent">
         <img class="d-block w-100" src="" alt="Preview of 2nd most recent notes">
