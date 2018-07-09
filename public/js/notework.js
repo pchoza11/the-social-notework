@@ -118,4 +118,23 @@ $(document).ready(function () {
 
         //     });
         // });
+
+    // var slideImageDiv = $(".slide-image-div");
+    // var slideImage = $(".slide-image");
+    // var slideImageWidth = slideImage.width();
+    // var slideImageHeight = slideImage.height();
+    // var imgSrc = slideImage.attr("src");
+    
+    // slideImageDiv.width(slideImageWidth);
+    // slideImageDiv.height(slideImageHeight);
+
+    // slideImageDiv.css({
+    //     "background-image": "linear-gradient(135deg, rgba(21, 126, 251, 0.2) 0%, rgba(21, 126, 251, 0.9) 100%), url(" + imgSrc + ")",
+    //     "background-size": "100%",
+    //     "background-position": "top center"
+
+    // });
+    // slideImage.hide();
+
+
 });

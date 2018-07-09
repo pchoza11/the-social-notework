@@ -31,7 +31,7 @@
   <p class="lead">Add a class, add some new notes, or go over your old notes!</p>
   <hr class="my-4">
   <a class="btn btn-primary btn-lg" id="create-notes" href="{{user.id}}/create-notes" role="button">Type Some Notes!</a>
-  {{!-- <a class="btn btn-primary btn-lg" id="addclass" href="#" role="button">Add A Class!</a> --}}
+  <a class="btn btn-primary btn-lg" id="search-subject" href="#" role="button">Search Notes By Subject!</a>
 </div>
 <div class="recent">
   <div id="carousel" class="carousel slide" data-ride="carousel">
@@ -39,30 +39,16 @@
       <div class="mostrecent">
 
       {{#each note}}
-<div class="accordion" id="accordionExample">
-  <div class="card">
-    <div class="card-header" id="headingTwo">
-      <h5 class="mb-0">
-        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseEach" aria-expanded="false" aria-controls="collapseEach">
-          {{category}}:  {{title}}
-        </button>
-      </h5>
-    </div>
+      
+<div class="card" style="width: 100%;">
+  <div class="card-body">
+    <h5 class="card-title">{{category}} -- {{title}}</h5>
+    <p class="card-text">{{body}}</p>
 
-    <div id="collapseEach" class="collapse" aria-labelledby="headingEach" data-parent="#accordionExample">
-      <div class="card-body">
-        {{body}}
-      </div>
-    </div>
-  </div>
-      {{/each}}
-      </div>
-      <div class="2ndmostrecent">
-        <img class="d-block w-100" src="" alt="Preview of 2nd most recent notes">
-      </div>
-      <div class="3rdmostrecent">
-        <img class="d-block w-100" src="" alt="Preview of 3rd most recent notes">
-      </div>
-    </div>
   </div>
 </div>
+      {{/each}}
+      <script>console.log(note.id)</script>
+      </div>
+
+

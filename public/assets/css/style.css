@@ -26,3 +26,24 @@ body {
   padding: 15px;
 }
 
+.card{
+    margin-top: 1%;
+}
+
+.carousel-item {
+    margin-top: 3%;
+
+}
+
+.carousel-caption {
+    color: black;
+    font-size: 20px;
+}
+h5{
+    font-size: 25px;
+
+}
+
+.carousel {
+    height: 40%;
+}
