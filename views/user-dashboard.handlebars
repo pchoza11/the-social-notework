@@ -44,7 +44,12 @@
   <div class="card-body">
     <h5 class="card-title">{{category}} -- {{title}}</h5>
     <p class="card-text">{{body}}</p>
-
+    <ul class="form-inline">
+      <li>
+        <button class="btn btn-primary mr-auto" type="edit" id="edit-button">Edit</button>
+        <button type="button" class="btn btn-danger mr-auto" type="delete" id="delete-button">X</button>
+      </li>
+    </ul>
   </div>
 </div>
       {{/each}}

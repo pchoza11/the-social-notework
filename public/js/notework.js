@@ -110,6 +110,18 @@ $(document).ready(function () {
                 }
             });
         }
+
+    // $(document).on("click", "#edit-button", function () {
+    //     var currentTodo = $(this).data("note");
+    //     $(this).children().hide();
+    //     $(this).children("input.edit").val(currentTodo.text);
+    //     $(this).children("input.edit").show();
+    //     $(this).children("input.edit").focus();
+    // });
+
+    // $("#delete-button").on("click", function (event) {});
+
+
         // $(document).on("click", "#create-notes", function (event) {
         //     event.preventDefault();
         //     console.log(event)
